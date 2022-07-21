@@ -1,0 +1,36 @@
+[
+  {
+    "Properties": {
+      "ItemCode": "TEST-BOM",
+      "Description": "Test BOM",
+      "Quantity": 100,
+      "DrawingNr": "00.123.456",
+      "EffectiveDate": "2022-07-01",
+      "ExpiryDate": "2099-12-31",
+      "Freefield1": 12.345,
+      "Freefield4": "FREE FIELD 4a",
+      "SetMainVersion": true
+    },
+
+    "Collections": {
+      "Parts": [
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART1",
+            "Quantity": 100,
+            "Freefield1": 23.456,
+            "Freefield4": "FREE FIELD 4b"
+          }
+        },
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART3",
+            "Quantity": 50,
+            "Freefield1": 34.567,
+            "Freefield4": "FREE FIELD 4C"
+          }
+        }
+      ]
+    }
+  }
+]

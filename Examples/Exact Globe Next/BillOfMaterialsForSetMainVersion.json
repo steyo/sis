@@ -1,0 +1,15 @@
+[
+  {
+    "Properties": {
+      "ItemCode": "TEST-BOM",
+      "Version": "1",
+      "Description": "Test BOM",
+      "SetMainVersion": true
+    },
+
+    "Collections": {
+      "Parts": [
+      ]
+    }
+  }
+]

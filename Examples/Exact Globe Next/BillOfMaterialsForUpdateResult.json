@@ -1,0 +1,87 @@
+[
+  {
+    "originId": "38c21654-4b31-4677-9580-f3dc10e2ced0",
+    "id": "f133db56-682a-4db4-ab00-ed915fd8888c",
+    "properties": {
+      "itemCode": "TEST-BOM",
+      "version": "       2",
+      "description": "Test BOM",
+      "quantity": 200,
+      "drawingNr": "00.123.456",
+      "effectiveDate": "2022-08-01",
+      "expiryDate": "2099-12-31",
+      "freefield1": 12.345,
+      "freefield4": "FREE FIELD 4a",
+      "setMainVersion": true
+    },
+    "collections": {
+      "parts": [
+        {
+          "originId": "242fb60e-3908-4d91-9756-e1b8da52eef6",
+          "id": "6dfb9450-44c1-426c-9c07-7c2211db74b9",
+          "properties": {
+            "itemCode": "TEST-PART1",
+            "quantity": 150,
+            "freefield1": 23.456,
+            "freefield4": "FREE FIELD 4b",
+            "lineNr": 1,
+            "sequenceNr": "1"
+          },
+          "collections": {}
+        },
+        {
+          "originId": "c88b5078-8c21-4e1b-948f-79c659b1145c",
+          "id": "0012d16a-4fcd-4a85-8f13-cb6e04a60c40",
+          "properties": {
+            "itemCode": "TEST-PART2",
+            "quantity": 100,
+            "freefield1": 34.567,
+            "freefield4": "FREE FIELD 4c",
+            "lineNr": 2,
+            "sequenceNr": "2"
+          },
+          "collections": {}
+        },
+        {
+          "originId": "87108dee-f88b-41bd-a1ed-c27da3c9f51c",
+          "id": "0bf8fcc4-4440-48ee-9224-7d4ea46e2196",
+          "properties": {
+            "itemCode": "TEST-PART3",
+            "quantity": 175,
+            "freefield1": 23.456,
+            "freefield4": "FREE FIELD 4d",
+            "lineNr": 3,
+            "sequenceNr": "3"
+          },
+          "collections": {}
+        },
+        {
+          "originId": "c474dcb5-8237-49a0-bc8c-afa9135587c7",
+          "id": "9f5f636a-563e-4d88-b8f6-eeb4949b20de",
+          "properties": {
+            "itemCode": "TEST-PART2",
+            "quantity": 125,
+            "freefield1": 34.567,
+            "freefield4": "FREE FIELD 4e",
+            "lineNr": 4,
+            "sequenceNr": "4"
+          },
+          "collections": {}
+        },
+        {
+          "originId": "d9e6fe06-8f86-4914-ac50-2c1e8f5a07d2",
+          "id": "00789d77-4a29-4d01-bde7-aade7efb6f92",
+          "properties": {
+            "itemCode": "TEST-PART1",
+            "quantity": 125,
+            "freefield1": 34.567,
+            "freefield4": "FREE FIELD 4f",
+            "lineNr": 5,
+            "sequenceNr": "5"
+          },
+          "collections": {}
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "Properties": {
+      "ItemCode": "TEST-BOM",
+      "Version": "2",
+      "Description": "Test BOM",
+      "Quantity": 200,
+      "DrawingNr": "00.123.456",
+      "EffectiveDate": "2022-08-01",
+      "ExpiryDate": "2099-12-31",
+      "Freefield1": 12.345,
+      "Freefield4": "FREE FIELD 4a",
+      "SetMainVersion": true
+    },
+
+    "Collections": {
+      "Parts": [
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART1",
+            "Quantity": 150,
+            "Freefield1": 23.456,
+            "Freefield4": "FREE FIELD 4b"
+          }
+        },
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART2",
+            "Quantity": 100,
+            "Freefield1": 34.567,
+            "Freefield4": "FREE FIELD 4c"
+          }
+        },
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART3",
+            "Quantity": 175,
+            "Freefield1": 23.456,
+            "Freefield4": "FREE FIELD 4d"
+          }
+        },
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART2",
+            "Quantity": 125,
+            "Freefield1": 34.567,
+            "Freefield4": "FREE FIELD 4e"
+          }
+        },
+        {
+          "Properties": {
+            "ItemCode": "TEST-PART1",
+            "Quantity": 125,
+            "Freefield1": 34.567,
+            "Freefield4": "FREE FIELD 4f"
+          }
+        }
+      ]
+    }
+  }
+]

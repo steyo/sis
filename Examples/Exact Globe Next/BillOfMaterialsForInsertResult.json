@@ -1,0 +1,48 @@
+[
+  {
+    "originId": "164d35a3-db06-4d4a-94cc-7c285f4d07a2",
+    "id": "4bcf3fe6-28bd-4783-9e15-8a906f68dad6",
+    "properties": {
+      "itemCode": "TEST-BOM",
+      "description": "Test BOM",
+      "quantity": 100,
+      "drawingNr": "00.123.456",
+      "effectiveDate": "2022-07-01",
+      "expiryDate": "2099-12-31",
+      "freefield1": 12.345,
+      "freefield4": "FREE FIELD 4a",
+      "setMainVersion": true,
+      "version": "       5"
+    },
+    "collections": {
+      "parts": [
+        {
+          "originId": "b500c87b-18b4-4d4a-8c7b-663c9e5d0cb3",
+          "id": "c2e3ad76-c76f-4a65-8295-20a127669c36",
+          "properties": {
+            "itemCode": "TEST-PART1",
+            "quantity": 100,
+            "freefield1": 23.456,
+            "freefield4": "FREE FIELD 4b",
+            "lineNr": 1,
+            "sequenceNr": "1"
+          },
+          "collections": {}
+        },
+        {
+          "originId": "0f9caf82-034e-4c5e-9f81-d9983ee4d9e5",
+          "id": "82210cf8-b8b6-4210-83d6-cf83d8ea6250",
+          "properties": {
+            "itemCode": "TEST-PART3",
+            "quantity": 50,
+            "freefield1": 34.567,
+            "freefield4": "FREE FIELD 4C",
+            "lineNr": 2,
+            "sequenceNr": "2"
+          },
+          "collections": {}
+        }
+      ]
+    }
+  }
+]

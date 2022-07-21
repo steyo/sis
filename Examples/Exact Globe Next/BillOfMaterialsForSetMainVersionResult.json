@@ -1,0 +1,15 @@
+[
+  {
+    "originId": "05268ad9-f57c-4361-ac8e-d88084edc282",
+    "id": "1a3865e3-c38c-4e7b-9cfe-6d505ea2f460",
+    "properties": {
+      "itemCode": "TEST-BOM",
+      "version": "       1",
+      "description": "Test BOM",
+      "setMainVersion": true
+    },
+    "collections": {
+      "parts": []
+    }
+  }
+]

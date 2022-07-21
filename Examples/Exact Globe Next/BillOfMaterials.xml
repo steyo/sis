@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1270
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgSdk001" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadBillOfMaterialsForUpdate"
+			  type="ReadDataObjectsJsonFile"
+			  filePath="BillOfMaterialsForUpdate.json"
+			  />
+
+		<task name="WriteBillOfMaterialsForUpdate"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="BillOfMaterialsForUpdateResult.json"
+		/>
+
+		<task name="UpdateBillOfMaterials"
+			  type="DataUpdate"
+			  dataStore="EgSdk001"
+			  object="BillOfMaterials"/>
+
+
+		<task name="ReadBillOfMaterialsForInsert"
+		      type="ReadDataObjectsJsonFile"
+		      filePath="BillOfMaterialsForInsert.json"
+		/>
+
+		<task name="WriteBillOfMaterialsForInsert"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="BillOfMaterialsForInsertResult.json"
+		/>
+
+		<task name="InsertBillOfMaterials"
+		      type="DataInsert"
+		      dataStore="EgSdk001"
+		      object="BillOfMaterials"/>
+
+
+		<task name="ReadBillOfMaterialsForSetMainVersion"
+		      type="ReadDataObjectsJsonFile"
+		      filePath="BillOfMaterialsForSetMainVersion.json"
+		/>
+
+		<task name="WriteBillOfMaterialsForSetMainVersion"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="BillOfMaterialsForSetMainVersionResult.json"
+		/>
+
+		<task name="SetMainVersionBillOfMaterials"
+		      type="DataUpdate"
+		      dataStore="EgSdk001"
+		      object="BillOfMaterials"/>
+
+
+		<task name="LogErrors"
+		      type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="ReadBillOfMaterialsForUpdate" destination="UpdateBillOfMaterials" />
+		<connection source="UpdateBillOfMaterials" destination="WriteBillOfMaterialsForUpdate" />
+
+		<connection source="ReadBillOfMaterialsForSetMainVersion" destination="SetMainVersionBillOfMaterials" />
+		<connection source="SetMainVersionBillOfMaterials" destination="WriteBillOfMaterialsForSetMainVersion" />
+
+		<connection source="ReadBillOfMaterialsForInsert" destination="InsertBillOfMaterials" />
+		<connection source="InsertBillOfMaterials" destination="WriteBillOfMaterialsForInsert" />
+
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Ignore"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadBillOfMaterialsForInsert"/>
+		<entryPoint task="ReadBillOfMaterialsForSetMainVersion"/>
+		<entryPoint task="ReadBillOfMaterialsForUpdate"/>
+	</entryPoints>
+</sip>
