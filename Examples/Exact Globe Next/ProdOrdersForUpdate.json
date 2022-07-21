@@ -1,0 +1,57 @@
+[
+  {
+    "Properties": {
+      "PartialUpdate": true,
+      "ProdOrderNr": "PROD00010020"
+    },
+
+    "Collections": {
+      "Products": [
+        {
+          "Properties": {
+            "Warehouse": "1",
+            "ItemCode": "MCB0003",
+            "Version": "1",
+            "StartDate": "2022-08-01",
+            "EndDate": "2022-08-30",
+            "Quantity": 150,
+            "Description": "Custom description changed"
+          }
+        }
+      ],
+
+      "Materials": [
+        {
+          "Properties": {
+            "ItemCode": "BON0009",
+            "Quantity": 155
+          }
+        }
+      ]
+    }
+  },
+
+  {
+    "Properties": {
+      "PartialUpdate": false,
+      "EnsureDetailsLoaded": true,
+      "ProdOrderNr": "PROD00010020"
+    },
+
+    "Collections": {
+      "Products": [
+        {
+          "Properties": {
+            "Warehouse": "1",
+            "ItemCode": "MCB0003",
+            "Version": "1",
+            "StartDate": "2022-08-01",
+            "EndDate": "2022-08-30",
+            "Quantity": 175,
+            "Description": "Custom description changed"
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1270
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgSdk001" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadProdOrdersForUpdate"
+			  type="ReadDataObjectsJsonFile"
+			  filePath="ProdOrdersForUpdate.json"
+			  />
+
+		<task name="WriteProdOrdersForUpdate"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="ProdOrdersForUpdateResult.json"
+		/>
+
+		<task name="UpdateProdOrders"
+			  type="DataUpdate"
+			  dataStore="EgSdk001"
+			  object="ProdOrders"/>
+
+
+		<task name="ReadProdOrdersForInsert"
+		      type="ReadDataObjectsJsonFile"
+		      filePath="ProdOrdersForInsert.json"
+		/>
+
+		<task name="WriteProdOrdersForInsert"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="ProdOrdersForInsertResult.json"
+		/>
+
+		<task name="InsertProdOrders"
+		      type="DataInsert"
+		      dataStore="EgSdk001"
+		      object="ProdOrders"/>
+
+		<task name="LogErrors"
+			  type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="ReadProdOrdersForUpdate" destination="UpdateProdOrders" />
+		<connection source="UpdateProdOrders" destination="WriteProdOrdersForUpdate" />
+
+		<connection source="ReadProdOrdersForInsert" destination="InsertProdOrders" />
+		<connection source="InsertProdOrders" destination="WriteProdOrdersForInsert" />
+
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Ignore"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadProdOrdersForInsert"/>
+		<entryPoint task="ReadProdOrdersForUpdate"/>
+	</entryPoints>
+</sip>

@@ -1,0 +1,21 @@
+[
+  {
+    "Properties": {
+      "Warehouse": "1",
+      "ItemCode": "MCB0003",
+      "Version": "1",
+      "StartDate": "2022-08-01",
+      "EndDate": "2022-08-31",
+      "Quantity": 100,
+      "Description": "Custom description"
+    },
+
+    "Collections": {
+      "Products": [
+      ],
+
+      "Materials": [
+      ]
+    }
+  }
+]
