@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1270
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgSdk001" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadPriceListsForUpdate"
+			  type="ReadDataObjectsJsonFile"
+			  filePath="PriceListsForUpdate.json"
+			  />
+
+		<task name="WritePriceListsForUpdate"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="PriceListsForUpdateResult.json"
+		/>
+
+		<task name="UpdatePriceLists"
+			  type="DataUpdate"
+			  dataStore="EgSdk001"
+			  object="PriceLists"/>
+
+
+		<task name="ReadPriceListsForInsert"
+		      type="ReadDataObjectsJsonFile"
+		      filePath="PriceListsForInsert.json"
+		/>
+
+		<task name="WritePriceListsForInsert"
+		      type="WriteDataObjectsJsonFile"
+		      filePath="PriceListsForInsertResult.json"
+		/>
+
+		<task name="InsertPriceLists"
+		      type="DataInsert"
+		      dataStore="EgSdk001"
+		      object="PriceLists"/>
+
+		<task name="LogErrors"
+		      type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="ReadPriceListsForUpdate" destination="UpdatePriceLists" />
+		<connection source="UpdatePriceLists" destination="WritePriceListsForUpdate" />
+
+		<connection source="ReadPriceListsForInsert" destination="InsertPriceLists" />
+		<connection source="InsertPriceLists" destination="WritePriceListsForInsert" />
+
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Ignore"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadPriceListsForInsert"/>
+		<entryPoint task="ReadPriceListsForUpdate"/>
+	</entryPoints>
+</sip>

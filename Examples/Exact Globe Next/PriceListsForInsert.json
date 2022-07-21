@@ -1,0 +1,34 @@
+[
+  {
+    "Properties": {
+      "PriceList": "TEST",
+      "Description": "Test insert",
+      "CurrencyCode": "EUR",
+      "Type": "S",
+      "AccountType": "C",
+      "Main": false
+    },
+
+    "Collections": {
+      "Prices": [
+        {
+          "properties": {
+            "itemcode": "MCB0002",
+            "UnitCode": "kg",
+            "ValidFrom": "2022-07-01",
+            "ValidTo": "2022-07-31",
+            "AccountID": null,
+
+            "Factor": 1,
+            "DiscountType": "N",
+            "Price": 10.75,
+            "Quantity1": 1,
+            "Amount1": 9.5,
+            "Quantity2": 2,
+            "Amount2": 9.2
+          }
+        }
+      ] 
+    } 
+  }
+]
