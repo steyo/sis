@@ -12,8 +12,8 @@
     "Collections": {
       "Prices": [
         {
-          "properties": {
-            "itemcode": "MCB0002",
+          "Properties": {
+            "ItemCode": "MCB0002",
             "UnitCode": "kg",
             "ValidFrom": "2022-07-01",
             "ValidTo": "2022-07-31",

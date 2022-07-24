@@ -1,0 +1,49 @@
+[
+  {
+    "originId": "2e9419f7-60d4-4f52-8183-b3ddac3d2ed9",
+    "id": "64f25034-1fc9-43ee-b36a-f3ee9d019053",
+    "properties": {
+      "priceList": "ACTIE"
+    },
+    "collections": {
+      "prices": [
+        {
+          "originId": "052cf35f-29d2-46e4-a08e-57e968c36e90",
+          "id": "6b1b2ea8-feed-402a-890b-9f4560c8f224",
+          "properties": {
+            "id": 399,
+            "quantity2": 2.0,
+            "amount2": 9.2,
+            "accountID": null,
+            "discountType": "N",
+            "factor": 1.0,
+            "itemCode": "MCB0002",
+            "unit": "kg",
+            "price": 10.75,
+            "validFrom": "2022-01-01T00:00:00",
+            "validTo": "2099-12-31T00:00:00",
+            "quantity1": 1.0,
+            "quantity3": 0.0,
+            "quantity4": 0.0,
+            "quantity5": 0.0,
+            "quantity6": 0.0,
+            "quantity7": 0.0,
+            "quantity8": 0.0,
+            "quantity9": 0.0,
+            "quantity10": 0.0,
+            "amount1": 9.5,
+            "amount3": 0.0,
+            "amount4": 0.0,
+            "amount5": 0.0,
+            "amount6": 0.0,
+            "amount7": 0.0,
+            "amount8": 0.0,
+            "amount9": 0.0,
+            "amount10": 0.0
+          },
+          "collections": {}
+        }
+      ]
+    }
+  }
+]

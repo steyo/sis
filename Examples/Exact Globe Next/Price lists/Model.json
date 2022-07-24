@@ -1,0 +1,71 @@
+[
+  {
+    "Properties": {
+      "PriceList": "",
+      "Description": "",
+      "Type": "S",
+
+      "Country": "",
+      "CurrencyCode": "EUR",
+
+      "AccountType": "C",
+      "AccountStatus": "",
+      "AccountClassification": "",
+
+      "Main": false
+    },
+
+    "Collections": {
+      "Prices": [
+        {
+          "Properties": {
+            /* Key property for updating */
+            "ID": 0,
+
+            /* Key properties for creation */
+            "ItemCode": "",
+            "AccountID": null,
+            "ValidFrom": "2022-07-01",
+            "ValidTo": "2099-12-31",
+            "UnitCode": "",
+
+            "Factor": 1.0,
+
+            "DiscountType": "N",
+            "Price": 10.75,
+
+            "Quantity1": 1,
+            "Amount1": 1.0,
+
+            "Quantity2": 0,
+            "Amount2": 0.0,
+
+            "Quantity3": 0,
+            "Amount3": 0.0,
+
+            "Quantity4": 0,
+            "Amount4": 0.0,
+
+            "Quantity5": 0,
+            "Amount5": 0.0,
+
+            "Quantity6": 0,
+            "Amount6": 0.0,
+
+            "Quantity7": 0,
+            "Amount7": 0.0,
+
+            "Quantity8": 0,
+            "Amount8": 0.0,
+
+            "Quantity9": 0,
+            "Amount9": 0.0,
+
+            "Quantity10": 0,
+            "Amount10": 0.0
+          }
+        }
+      ] 
+    } 
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "Properties": {
+      "ItemCode": "",
+      /* Required key field for update, output otherwise */
+      "Version": "",
+
+      "Description": "",
+      "Quantity": 1,
+
+      "Division": "",
+      "DrawingNr": "",
+
+      "EffectiveDate": "2022-07-01",
+      "ExpiryDate": "2022-12-31",
+
+      "Freefield1": 1.234,
+      "Freefield2": 1.234,
+      "Freefield3": 1.234,
+      "Freefield13": 1.234,
+      "Freefield14": 1.234,
+      "Freefield15": 1.234,
+
+      "Freefield4": "",
+      "Freefield5": "",
+      "Freefield6": "",
+      "Freefield7": "",
+      "Freefield8": "",
+      "Freefield9": "",
+      "Freefield10": "",
+      "Freefield11": "",
+      "Freefield12": "",
+      "Freefield16": "",
+      "Freefield17": "",
+      "Freefield18": "",
+      "Freefield19": "",
+      "Freefield20": "",
+
+      /* When set, the insert or update operation makes this the main version */
+      "SetMainVersion": true
+    },
+
+    "Collections": {
+      "Parts": [
+        {
+          /* Required for insert, optional for update when only header properties or setting the main version  */
+          "Properties": {
+            /* Optional: Used to control order and to select a particular line */
+            //"LineNr": 1, 
+
+            /* Optional: Used to force creation of new line */
+            //"IsNew": true,
+
+            /* Output only */
+            //"SequenceNr": 1,
+
+            "ItemCode": "",
+            "Quantity": 1,
+
+            "Step": 10,
+            "Operation": "",
+            "PositionNr": "",
+            "CostCenter": "",
+            "Condition": "N",
+
+            "Freefield1": 1.234,
+            "Freefield2": 1.234,
+            "Freefield3": 1.234,
+            "Freefield13": 1.234,
+            "Freefield14": 1.234,
+            "Freefield15": 1.234,
+
+            "Freefield4": "",
+            "Freefield5": "",
+            "Freefield6": "",
+            "Freefield7": "",
+            "Freefield8": "",
+            "Freefield9": "",
+            "Freefield10": "",
+            "Freefield11": "",
+            "Freefield12": "",
+            "Freefield16": "",
+            "Freefield17": "",
+            "Freefield18": "",
+            "Freefield19": "",
+            "Freefield20": ""
+          }
+        }
+      ]
+    }
+  }
+]

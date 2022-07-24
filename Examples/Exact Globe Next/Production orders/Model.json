@@ -1,0 +1,107 @@
+[
+  {
+    "Properties": {
+      /* Required key field for update, output otherwise */
+      //"ProdOrderNr": "",
+
+      /* For update, controls whether or not non-specified details are automatically loaded from the bill of materials.
+         For insert, if materials have not been specified, details for both products and materials are always automatically loaded.
+       */
+      //"EnsureDetailsLoaded": false,
+
+      /* Together with 'EnsureDetailsLoaded' gives fine-grained control over validations and allows partial updates (products or materials) when required details are not specified */
+      //"PartialUpdate": false,
+
+      /* For insert of single-product, these properties can be specified here */
+      "ItemCode": "",
+      "Version": "1",
+      "Quantity": 1,
+      "Description": "",
+
+      "Location": "",
+
+      "SerialNr": "",
+      "DrawingNr": "",
+      "StockTrackingNr": "",
+
+
+      /* Properties, if specified here, are shared between products and materials if not specified at that level */
+      "ProductionDate": "2022-07-01",
+      "StartDate": "2022-07-01",
+      "EndDate": "2022-07-31",
+
+      "Warehouse": "1",
+      "ResourceID": 0,
+      "CostCenter": "",
+      "ParentProjectNr": ""
+    },
+
+    "Collections": {
+      /* Optional for insert of single-product: The properties can then also be specified at the root object instead  */
+      "Products": [
+        {
+          "Properties": {
+            /* Optional: Used to control order and to select a particular line */
+            //"LineNr":  
+
+            /* Optional: Used to force creation of new line */
+            //"IsNew": true,
+            "ItemCode": "",
+            "Version": "1",
+            "Quantity": 1,
+            "Description": "",
+
+            "ProductionDate": "2022-07-01",
+            "StartDate": "2022-07-01",
+            "EndDate": "2022-07-31",
+
+            "Warehouse": "1",
+            "Location": "",
+
+            "ResourceID": 0,
+            "CostCenter": "",
+            "ParentProjectNr": "",
+            "SerialNr": "",
+            "DrawingNr": "",
+            "StockTrackingNr": ""
+          }
+        }
+      ],
+
+      /* Optional for insert: When not specified, the bill of materials will be used */
+      "Materials": [
+        {
+          "Properties": {
+            /* Optional: Used to control order and to select a particular line */
+            //"LineNr":  
+
+            /* Optional: Used to force creation of new line */
+            //"IsNew": true,
+            "ItemCode": "",
+            "Version": "1",
+            "Quantity": 1,
+            "Description": "",
+
+            "ProductionDate": "2022-07-01",
+            "StartDate": "2022-07-01",
+            "EndDate": "2022-07-31",
+
+            "Warehouse": "1",
+            "Location": "",
+
+            "Condition": "N",
+            "BackFlush": true,
+            "PositionNr": "",
+            "Step": 10,
+            "Operation": "",
+
+            "ResourceID": 0,
+            "CostCenter": "",
+            "ParentProjectNr": "",
+            "SerialNr": ""
+          }
+        }
+      ]
+    }
+  }
+]
