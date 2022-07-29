@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<eExact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="eExact-Schema.xsd">
+	<Items>
+		<Item code="TEST-SIS" type="S" searchcode="SEARCH-TEST-SIS">
+			<Description>Short description</Description>
+			<LongDescription>Long description</LongDescription>
+		</Item>
+	</Items>
+</eExact>

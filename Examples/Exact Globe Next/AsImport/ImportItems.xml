@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1270
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgRest001" type="ExactGlobeRest">
+			<parameters>
+				<parameter name="Url" value="http://localhost:8020/services/Exact.Entity.REST.EG"/>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="DatabaseName" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadItems"
+			  type="ReadXml"
+			  filePath="Data\Items.xml">
+
+			<queries>
+				<query output="Items" elementsXPath="eExact/Items/Item">
+					<elementPropertyMappings>
+						<propertyMapping name="ItemCode" valueXPath="string(@code)"/>
+						<propertyMapping name="Type" valueXPath="string(@type)"/>
+						<propertyMapping name="SearchCode" valueXPath="string(@searchcode)"/>
+
+						<propertyMapping name="CountrySpecificDescription" valueXPath="string(Description)"/>
+						<propertyMapping name="TextDescription" valueXPath="string(LongDescription)"/>
+					</elementPropertyMappings>
+				</query>
+			</queries>
+		</task>
+
+		<task name="UpsertItem" 
+		      type="DataInsert" 
+		      dataStore="EgRest001"
+		      object="Item" />
+
+		<task name="LogErrors" 
+		      type="ConsoleOutput" />
+	</tasks>
+
+	<connections>
+		<connection source="ReadItems" sourcePin="Items" destination="UpsertItem" failureMode="Skip" />
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Ignore"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadItems"/>
+	</entryPoints>
+</sip>
