@@ -1,0 +1,43 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgSdk001" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadExcel" type="ReadExcelFile" filePath="StockCounts.xlsx" useColumnHeaders="true" useColumnNames="true"/>
+		<task name="WriteJson" type="WriteDataObjectsJsonFile" filePath="StockCounts.json"/>
+
+		<task name="ProcessStockCounts" 
+		      type="EgStockCount" 
+		      dataStore="EgSdk001"
+
+		      processDate=""
+		      projectNr=""
+		      glAccountNrCost=""
+		      transactionDescription="Excel import"
+
+		      itemcode="{P:ItemCode}"
+		      warehouse="{P:Warehouse}"
+		      location="{P:Location}"
+		      quantity="{P:Quantity}">
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors"/>
+
+		<connection source="ReadExcel" sourcePin="DataOutput" destination="WriteJson"/>
+		<connection source="ReadExcel" sourcePin="DataOutput" destination="ProcessStockCounts"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadExcel"/>
+	</entryPoints>
+</sip>
