@@ -1,0 +1,38 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgRest" type="ExactGlobeRest">
+			<parameters>
+				<parameter name="Url" value="http://localhost:8020/services/Exact.Action.REST.EG"/>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="DatabaseName" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadExcel" type="ReadExcelFile" filePath="RecodeItems.xlsx" useColumnHeaders="true" useColumnNames="false" description="Reading Excel file"/>
+		<task name="EgLogSuccess" type="WriteExcelFile" filePath="ItemsRecoded.xlsx" sheetName="Success" description="Exporting recoded items to Excel file"/>
+		<task name="EgLogFailure" type="WriteExcelFile" filePath="ItemsFailed.xlsx" sheetName="Failure" description="Exporting failed items to Excel file"/>
+
+		<task name="EgRecodeItems" 
+		      type="DataInsert" 
+		      description="Recoding items in Exact"
+		      dataStore="EgRest"
+		      object="ItemRecode_Process">
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="ReadExcel" sourcePin="DataOutput" destination="EgRecodeItems"/>
+		<connection source="EgRecodeItems" sourcePin="Output" destination="EgLogSuccess" failureMode="Skip"/>
+		<connection source="EgRecodeItems" sourcePin="ErrorOutput" destination="EgLogFailure" failureMode="Skip"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadExcel"/>
+	</entryPoints>
+</sip>
