@@ -1,0 +1,58 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgRest" type="ExactGlobeRest">
+			<parameters>
+				<parameter name="Url" value="http://localhost:8020/services/Exact.Entity.REST.EG"/>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="DatabaseName" value="001"/>
+			</parameters>
+		</dataStore>
+		
+    <dataStore name="EgSql" type="SqlServer">
+      <parameters>
+        <parameter name="ServerName" value="(local)"/>
+        <parameter name="Database" value="001"/>
+        <parameter name="IntegratedSecurity" value="true"/>
+      </parameters>
+    </dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadExcel" type="ReadExcelFile" filePath="ImportAccounts.xlsx" useColumnHeaders="true" useColumnNames="false" description="Reading Excel file"/>
+
+		<task name="SetAccountNumbers" type="DataJoinQuery" dataStore="EgSql" description="Setting account numbers">
+		  <query>
+		    SELECT 
+		      [AccountCode] = CAST(MAX(CAST([debnr] AS INT)) + @RowNr AS VARCHAR(20)),
+		      [DebtorCode] = CAST(MAX(CAST([debnr] AS INT)) + @RowNr AS VARCHAR(20)),
+		      [DebtorNumber] = CAST(MAX(CAST([debnr] AS INT)) + @RowNr AS VARCHAR(6))
+		    FROM [cicmpy]
+		  </query>
+		</task>
+		
+		<task name="EgLogSuccess" type="WriteDataObjectsJsonFile" filePath="AccountsCreated.json" description="Exporting created accounts to JSON file"/>
+		<task name="EgLogFailure" type="WriteDataObjectsJsonFile" filePath="AccountsFailed.json" description="Exporting failed accounts to JSON file"/>
+
+		<task name="EgCreateAccounts" 
+		      type="DataInsert" 
+		      description="Creating accounts in Exact"
+		      dataStore="EgRest"
+		      object="Account">
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="ReadExcel" sourcePin="DataOutput" destination="SetAccountNumbers" rowNrProperty="RowNr"/>
+		<connection source="SetAccountNumbers" destination="EgCreateAccounts"/>
+		<connection source="EgCreateAccounts" sourcePin="Output" destination="EgLogSuccess" failureMode="Skip"/>
+		<connection source="EgCreateAccounts" sourcePin="ErrorOutput" destination="EgLogFailure" failureMode="Skip"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadExcel"/>
+	</entryPoints>
+</sip>
