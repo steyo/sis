@@ -1,0 +1,24 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgSql" type="SqlServer">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+				<parameter name="IntegratedSecurity" value="true"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="QueryStock" type="DataQuery" dataStore="EgSql" queryFilePath="PrepareStockCounts.sql" description="Querying current stock"/>
+		<task name="ExportQueryStock" type="WriteExcelFile" filePath="StockCounts.xlsx" sheetName="Stock" description="Exporting current stock to Excel file"/>
+	</tasks>
+
+	<connections>
+		<connection source="QueryStock" destination="ExportQueryStock"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="QueryStock"/>
+	</entryPoints>
+</sip>
