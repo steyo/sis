@@ -31,7 +31,7 @@
 	</tasks>
 
 	<connections>
-		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors"/>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
 
 		<connection source="ReadExcel" sourcePin="DataOutput" destination="WriteJson"/>
 		<connection source="ReadExcel" sourcePin="DataOutput" destination="ProcessStockCounts"/>

@@ -1,0 +1,53 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgSdk" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+		
+		<dataStore name="EgSql" type="SqlServer">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+				<parameter name="IntegratedSecurity" value="true"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="QueryWorkload" type="DataQuery" dataStore="EgSql" queryFilePath="StockCounts.sql" description="Querying workload"/>
+		<task name="EgLogSuccess" type="WriteExcelFile" filePath="StockCountsCompleted.xlsx" sheetName="Success" description="Exporting completed stock counts to Excel file"/>
+		<task name="EgLogFailure" type="WriteExcelFile" filePath="StockCountsFailed.xlsx" sheetName="Failure" description="Exporting failed stock counts to Excel file"/>
+
+		<task name="ProcessStockCounts" 
+		      type="EgStockCount" 
+		      dataStore="EgSdk"
+
+		      processDate=""
+		      projectNr=""
+		      glAccountNrCost=""
+		      transactionDescription="Query import"
+
+		      itemcode="{P:ItemCode}"
+		      warehouse="{P:Warehouse}"
+		      location="{P:Location}"
+		      quantity="{P:Quantity}">
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="QueryWorkload" sourcePin="Output" destination="ProcessStockCounts"/>
+		<connection source="ProcessStockCounts" sourcePin="Output" destination="EgLogSuccess" failureMode="Skip"/>
+		<connection source="ProcessStockCounts" sourcePin="ErrorOutput" destination="EgLogFailure" failureMode="Skip"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="QueryWorkload"/>
+	</entryPoints>
+</sip>
