@@ -18,15 +18,15 @@
 	</dataStores>
 
 	<tasks>
-		<task name="ReadExcel" type="ReadExcelFile" filePath="RecodeAccounts.xlsx" useColumnHeaders="true" useColumnNames="false" description="Reading Excel file"/>
-		<task name="EgLogSuccess" type="WriteExcelFile" filePath="AccountsRecoded.xlsx" sheetName="Success" description="Exporting recoded accounts to Excel file"/>
-		<task name="EgLogFailure" type="WriteExcelFile" filePath="AccountsFailed.xlsx" sheetName="Failure" description="Exporting failed accounts to Excel file"/>
+		<task name="QueryWorkload" type="DataQuery" dataStore="EgSql" queryFilePath="RecodeItems.sql" description="Querying workload"/>
+		<task name="EgLogSuccess" type="WriteExcelFile" filePath="ItemsRecoded.xlsx" sheetName="Success" description="Exporting recoded items to Excel file"/>
+		<task name="EgLogFailure" type="WriteExcelFile" filePath="ItemsFailed.xlsx" sheetName="Failure" description="Exporting failed items to Excel file"/>
 
-		<task name="EgRecodeAccounts" 
+		<task name="EgRecodeItems" 
 		      type="DataInsert" 
-		      description="Recoding accounts in Exact"
+		      description="Recoding items in Exact"
 		      dataStore="EgRest"
-		      object="AccountRecode_Process">
+		      object="ItemRecode_Process">
 		</task>
 
 		<task name="LogErrors" type="ConsoleOutput"/>
@@ -35,12 +35,12 @@
 	<connections>
 		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
 
-		<connection source="ReadExcel" sourcePin="DataOutput" destination="EgRecodeAccounts"/>
-		<connection source="EgRecodeAccounts" sourcePin="Output" destination="EgLogSuccess" failureMode="Skip"/>
-		<connection source="EgRecodeAccounts" sourcePin="ErrorOutput" destination="EgLogFailure" failureMode="Skip"/>
+		<connection source="QueryWorkload" sourcePin="Output" destination="EgRecodeItems"/>
+		<connection source="EgRecodeItems" sourcePin="Output" destination="EgLogSuccess" failureMode="Skip"/>
+		<connection source="EgRecodeItems" sourcePin="ErrorOutput" destination="EgLogFailure" failureMode="Skip"/>
 	</connections>
 
 	<entryPoints>
-		<entryPoint task="ReadExcel"/>
+		<entryPoint task="QueryWorkload"/>
 	</entryPoints>
 </sip>
