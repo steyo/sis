@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1307
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgSql" type="SqlServer">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+				<parameter name="IntegratedSecurity" value="true"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="QueryData" type="DataQuery" dataStore="EgSql" queryFilePath="ExportItems.sql"/>
+		<task name="WriteBinaryFile" type="WriteDataObjectsBinaryFile" filePath="ExportItems.dat.gz" overwrite="true"/>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="QueryData" destination="WriteBinaryFile"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="QueryData"/>
+	</entryPoints>
+</sip>

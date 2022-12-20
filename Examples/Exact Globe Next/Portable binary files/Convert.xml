@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1307
+-->
+<sip>
+	<tasks>
+		<task name="ReadBinaryFile" type="ReadDataObjectsBinaryFile" filePath="Export.dat.gz"/>
+		<task name="WriteExcelFile" type="WriteExcelFile" sheetName="export" filePath="Convert.xlsx"/>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="ReadBinaryFile" sourcePin="DataOutput" destination="WriteExcelFile"/>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadBinaryFile"/>
+	</entryPoints>
+</sip>

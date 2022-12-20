@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+	Steyo Integration Package (example)
+	Copyright Steyo Holding BV
+	Requires at least version 1.22.1307
+-->
+<sip>
+	<dataStores>
+		<dataStore name="EgSql" type="SqlServer">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+				<parameter name="IntegratedSecurity" value="true"/>
+				<parameter name="AllowUpsert" value="true"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="ReadBinaryFile" type="ReadDataObjectsBinaryFile" filePath="ExportItems.dat.gz"/>
+		
+		<task name="UpsertData" type="DataUpdate" dataStore="EgSql" object="Items">
+		  <keyProperties>
+		    <property>ItemCode</property>
+		  </keyProperties>
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="ReadBinaryFile" sourcePin="DataOutput" destination="UpsertData">
+		  <!-- Exclude the columns that cannot be assigned -->
+		  <propertyMappings>
+		    <propertyMapping except="ID,timestamp"/>
+		  </propertyMappings>
+		</connection>
+	</connections>
+
+	<entryPoints>
+		<entryPoint task="ReadBinaryFile"/>
+	</entryPoints>
+</sip>
