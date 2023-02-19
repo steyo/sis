@@ -1,0 +1,62 @@
+<sip>
+	<dataStores>
+		<dataStore name="EgSql" type="SqlServer">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+				<parameter name="IntegratedSecurity" value="true"/>
+			</parameters>
+		</dataStore>
+
+		<dataStore name="EgSdk" type="ExactGlobeSdk">
+			<parameters>
+				<parameter name="ServerName" value="(local)"/>
+				<parameter name="Database" value="001"/>
+			</parameters>
+		</dataStore>
+	</dataStores>
+
+	<tasks>
+		<task name="QueryOrderLines" type="DataQuery" dataStore="EgSql" queryFilePath="QueryFulfillment.sql" description="Querying order lines for fulfillment"/>
+
+		<task name="GroupOrderLines" type="Group" description="Grouping order lines">
+			<groups>
+				<group name="OrderLines">
+					<properties>
+						<property>OrderNr</property>
+						<property>Warehouse</property>
+					</properties>
+				</group>
+			</groups>
+		</task>
+
+		<task name="ProcessFulfillment"
+			  type="EgSalesOrderFulfillment"
+			  description="Processing fulfillment"
+			  dataStore="EgSdk"
+			  orderNr="{P:OrderNr}"
+			  warehouse="{P:Warehouse}
+			  "
+			  resetQuantities="true"
+			  ignoreInvalidLineIds="false"
+			  >
+			
+			<line lineId="{P:LineId}" quantity="{P:Quantity}"/>
+			<deliveryNote destination="None" />
+			<invoice generate="true"/>
+		</task>
+
+		<task name="LogErrors" type="ConsoleOutput" description="Logging errors"/>
+	</tasks>
+
+	<connections>
+		<connection source="*" sourcePin="ErrorOutput" destination="LogErrors" failureMode="Skip"/>
+
+		<connection source="QueryOrderLines" destination="GroupOrderLines"/>
+		<connection source="GroupOrderLines" destination="ProcessFulfillment"/>
+	</connections>
+	
+	<entryPoints>
+		<entryPoint task="QueryOrderLines"/> 
+	</entryPoints>
+</sip>
